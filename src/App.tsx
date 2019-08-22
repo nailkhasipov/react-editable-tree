@@ -1,8 +1,10 @@
 import React from "react";
-import "./App.css";
+import styled from "styled-components";
 
 const App: React.FC = () => {
-  return <div className="App">App</div>;
+  return <StyledApp>App</StyledApp>;
 };
+
+const StyledApp = styled.div``;
 
 export default App;
