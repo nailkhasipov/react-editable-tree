@@ -1,12 +1,18 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 type TaskItemProps = {
   task: string;
   onAddTask: Function;
+  onAddTaskList: Function;
 };
 
-export const TaskItem: React.FC<TaskItemProps> = ({ task, onAddTask }) => {
+export const TaskItem: React.FC<TaskItemProps> = ({
+  task,
+  onAddTask,
+  onAddTaskList
+}) => {
+  const [value, setValue] = useState("");
   const inputEl = useRef<HTMLInputElement>(null);
   useEffect(() => {
     if (inputEl && inputEl.current) {
@@ -16,10 +22,15 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onAddTask }) => {
   return (
     <StyledTaskItem
       ref={inputEl}
-      value={task}
+      value={value}
+      onChange={event => setValue(event.target.value)}
       onKeyPress={event => {
-        if (event.key === "Enter") {
-          onAddTask();
+        if (event.key === "Enter") onAddTask();
+      }}
+      onKeyDown={event => {
+        if (event.key === "Tab") {
+          event.preventDefault();
+          onAddTaskList();
         }
       }}
     />
