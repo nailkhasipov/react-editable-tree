@@ -1,12 +1,17 @@
-import React, { useReducer, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import styled from "styled-components";
 
 type ListItemProps = {
   value: string;
-  dispatch: Function;
+  addListItem: Function;
+  addList: Function;
 };
 
-export const ListItem: React.FC<ListItemProps> = ({ value, dispatch }) => {
+export const ListItem: React.FC<ListItemProps> = ({
+  value,
+  addListItem,
+  addList
+}) => {
   const inputEl = useRef<HTMLInputElement>(null);
   useEffect(() => {
     if (inputEl && inputEl.current) {
@@ -19,12 +24,12 @@ export const ListItem: React.FC<ListItemProps> = ({ value, dispatch }) => {
         ref={inputEl}
         value={value}
         onKeyPress={event => {
-          if (event.key === "Enter") dispatch({ type: "addListItem" });
+          if (event.key === "Enter") addListItem();
         }}
         onKeyDown={event => {
           if (event.key === "Tab") {
             event.preventDefault();
-            dispatch({ type: "addList" });
+            addList();
           }
         }}
       />
