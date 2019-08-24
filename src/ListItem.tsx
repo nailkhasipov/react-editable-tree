@@ -29,7 +29,10 @@ export const ListItem: React.FC<ListItemProps> = ({
         value={value}
         onChange={event => changeListItemValue(position, event.target.value)}
         onKeyPress={event => {
-          if (event.key === "Enter") addListItem(position);
+          if (event.key === "Enter") {
+            event.preventDefault();
+            addListItem(position);
+          }
         }}
         onKeyDown={event => {
           if (event.key === "Tab") {

@@ -16,7 +16,10 @@ export const reducer = (state: State, action: ListActionTypes) => {
       listItem.value = action.payload.value;
       return { list: [...state.list] };
     case ADD_LIST_ITEM:
-      return { list: [...state.list, newListItem] };
+      const index = action.position.charAt(action.position.length - 2);
+      const list = eval(`state.list${action.position.slice(0, -3)}`);
+      list.splice(index + 1, 0, newListItem);
+      return { list: [...state.list] };
     case ADD_LIST:
       // state.list[parseInt(action.position)].rest = [newListItem];
       return { list: [...state.list] };
