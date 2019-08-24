@@ -1,14 +1,16 @@
-import React, { useEffect, useRef, useContext } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 type ListItemProps = {
   value: string;
+  position: string;
   addListItem: Function;
   addList: Function;
 };
 
 export const ListItem: React.FC<ListItemProps> = ({
   value,
+  position,
   addListItem,
   addList
 }) => {
@@ -24,12 +26,12 @@ export const ListItem: React.FC<ListItemProps> = ({
         ref={inputEl}
         value={value}
         onKeyPress={event => {
-          if (event.key === "Enter") addListItem();
+          if (event.key === "Enter") addListItem(position);
         }}
         onKeyDown={event => {
           if (event.key === "Tab") {
             event.preventDefault();
-            addList();
+            addList(position);
           }
         }}
       />
