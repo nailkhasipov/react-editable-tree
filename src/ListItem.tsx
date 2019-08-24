@@ -4,6 +4,7 @@ import styled from "styled-components";
 type ListItemProps = {
   value: string;
   position: string;
+  changeListItemValue: Function;
   addListItem: Function;
   addList: Function;
 };
@@ -11,6 +12,7 @@ type ListItemProps = {
 export const ListItem: React.FC<ListItemProps> = ({
   value,
   position,
+  changeListItemValue,
   addListItem,
   addList
 }) => {
@@ -25,6 +27,7 @@ export const ListItem: React.FC<ListItemProps> = ({
       <ListItemInput
         ref={inputEl}
         value={value}
+        onChange={event => changeListItemValue(position, event.target.value)}
         onKeyPress={event => {
           if (event.key === "Enter") addListItem(position);
         }}
