@@ -18,6 +18,7 @@ const App: React.FC = () => {
     <StyledApp>
       <List
         list={state.list}
+        position=""
         changeListItemValue={(position: string, value: string) =>
           dispatch({
             type: CHANGE_LIST_ITEM_VALUE,

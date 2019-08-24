@@ -6,6 +6,7 @@ import { ListItem } from "./ListItem";
 
 type ListProps = {
   list: Array<ListItemInterface>;
+  position: string;
   changeListItemValue: Function;
   addListItem: Function;
   addList: Function;
@@ -13,6 +14,7 @@ type ListProps = {
 
 export const List: React.FC<ListProps> = ({
   list,
+  position,
   changeListItemValue,
   addListItem,
   addList
@@ -22,7 +24,7 @@ export const List: React.FC<ListProps> = ({
       {list.map((listItem: ListItemInterface, index: number) => (
         <React.Fragment key={index}>
           <ListItem
-            position={index.toString()}
+            position={`${position}[${index}]`}
             value={listItem.value}
             changeListItemValue={changeListItemValue}
             addListItem={addListItem}
@@ -31,6 +33,7 @@ export const List: React.FC<ListProps> = ({
           {listItem.rest && (
             <List
               list={listItem.rest}
+              position={`${position}[${index}].rest`}
               changeListItemValue={changeListItemValue}
               addListItem={addListItem}
               addList={addList}
