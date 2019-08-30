@@ -1,13 +1,10 @@
 import {
   State,
-  ListItemInterface,
   ListActionTypes,
   CHANGE_LIST_ITEM_VALUE,
   ADD_LIST_ITEM,
   ADD_LIST
 } from "./types";
-
-const newListItem: ListItemInterface = { value: "", rest: null };
 
 export const reducer = (state: State, action: ListActionTypes) => {
   switch (action.type) {
@@ -55,7 +52,7 @@ const addListItem = (list: any, position: any) => {
     }
   }
 
-  currentList.splice(listItemIndex + 1, 0, newListItem);
+  currentList.splice(listItemIndex + 1, 0, { value: "", rest: null });
 
   return { list: list };
 };
@@ -72,7 +69,7 @@ const addList = (list: any, position: any) => {
     }
   }
 
-  currentList[listItemIndex].rest = [newListItem];
+  currentList[listItemIndex].rest = [{ value: "", rest: null }];
 
   return { list: list };
 };
