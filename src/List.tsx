@@ -24,7 +24,7 @@ export const List: React.FC<ListProps> = ({
       {list.map((listItem: ListItemInterface, index: number) => (
         <React.Fragment key={index}>
           <ListItem
-            position={`${position}[${index}]`}
+            position={`${position}.${index}`}
             value={listItem.value}
             changeListItemValue={changeListItemValue}
             addListItem={addListItem}
@@ -33,7 +33,7 @@ export const List: React.FC<ListProps> = ({
           {listItem.rest && (
             <List
               list={listItem.rest}
-              position={`${position}[${index}].rest`}
+              position={`${position}.${index}`}
               changeListItemValue={changeListItemValue}
               addListItem={addListItem}
               addList={addList}

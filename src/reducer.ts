@@ -12,18 +12,33 @@ const newListItem: ListItemInterface = { value: "", rest: null };
 export const reducer = (state: State, action: ListActionTypes) => {
   switch (action.type) {
     case CHANGE_LIST_ITEM_VALUE:
-      const listItem = eval(`state.list${action.payload.position}`);
-      listItem.value = action.payload.value;
-      return { list: [...state.list] };
+      return changeListitemValue(
+        state.list,
+        action.payload.position,
+        action.payload.value
+      );
     case ADD_LIST_ITEM:
-      const index = action.position.charAt(action.position.length - 2);
-      const list = eval(`state.list${action.position.slice(0, -3)}`);
-      list.splice(index + 1, 0, newListItem);
-      return { list: [...state.list] };
+      return { list: [...state.list, newListItem] };
     case ADD_LIST:
-      // state.list[parseInt(action.position)].rest = [newListItem];
       return { list: [...state.list] };
     default:
       throw new Error();
   }
+};
+
+const changeListitemValue = (list: any, position: any, value: string) => {
+  let currentList = list;
+  const listArray = position.split(".");
+  listArray.shift();
+  const listItemIndex = listArray.pop();
+
+  if (listArray.length > 0) {
+    for (let i = 0; i < listArray.length; i++) {
+      currentList = list[listArray[i]].rest;
+    }
+  }
+
+  currentList[listItemIndex].value = value;
+
+  return { list: list };
 };
