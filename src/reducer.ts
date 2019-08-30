@@ -31,7 +31,7 @@ const changeListitemValue = (list: any, position: any, value: string) => {
 
   if (listArray.length > 0) {
     for (let i = 0; i < listArray.length; i++) {
-      currentList = list[listArray[i]].rest;
+      currentList = currentList[listArray[i]].rest;
     }
   }
 
@@ -48,7 +48,7 @@ const addListItem = (list: any, position: any) => {
 
   if (listArray.length > 0) {
     for (let i = 0; i < listArray.length; i++) {
-      currentList = list[listArray[i]].rest;
+      currentList = currentList[listArray[i]].rest;
     }
   }
 
@@ -65,7 +65,7 @@ const addList = (list: any, position: any) => {
 
   if (listArray.length > 0) {
     for (let i = 0; i < listArray.length; i++) {
-      currentList = list[listArray[i]].rest;
+      currentList = currentList[listArray[i]].rest;
     }
   }
 
