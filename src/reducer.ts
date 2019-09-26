@@ -73,3 +73,18 @@ const addList = (list: any, position: any) => {
 
   return { list: list };
 };
+
+const getListAndIndexAtPosition = (list: any, position: any) => {
+  let currentList = list;
+  const listArray = position.split(".");
+  listArray.shift();
+  const listItemIndex = listArray.pop();
+
+  if (listArray.length > 0) {
+    for (let i = 0; i < listArray.length; i++) {
+      currentList = currentList[listArray[i]].rest;
+    }
+  }
+
+  return { currentList, listItemIndex };
+};
